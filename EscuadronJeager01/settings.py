@@ -53,12 +53,10 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    ...
 ]
 
 ROOT_URLCONF = 'EscuadronJeager01.urls'
@@ -128,11 +126,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Esto le dice a Django que use tu carpeta 'static/' en la raíz del proyecto
-import os
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
 
 
 # Default primary key field type
@@ -149,4 +148,4 @@ MESSAGE_TAGS = {
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/perfil/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
