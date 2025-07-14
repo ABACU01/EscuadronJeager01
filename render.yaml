@@ -4,9 +4,9 @@ services:
     env: python
     buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn EscuadronJeager01.wsgi"
+    preDeployCommand: "python manage.py migrate"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: EscuadronJeager01.settings
     plan: free
     autoDeploy: true
-    preDeployCommand: "python manage.py migrate"
