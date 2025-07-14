@@ -56,6 +56,8 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  # <- necesario para login
+    'django.contrib.messages.middleware.MessageMiddleware',     # <- necesario para messages
 ]
 
 ROOT_URLCONF = 'EscuadronJeager01.urls'
