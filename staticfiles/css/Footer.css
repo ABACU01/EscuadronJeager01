@@ -1,0 +1,88 @@
+/* Agregamos reglas para eliminar los márgenes predeterminados del cuerpo de la página y del pie de página */
+body, footer {
+    margin: 0;
+    padding: 0;
+}
+
+/*footer*/
+footer {
+    background-color: #231C34;
+    color: #fff;
+    padding: 20px 0;
+}
+
+footer p {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+footer .text-center a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+footer .text-center a:hover {
+    color: #ccc;
+}
+
+/* Estilos para el contenido del footer */
+.footer__content {
+    display: flex;
+    justify-content: space-between; /* Alinea los elementos */
+    align-items: center; /* Centra verticalmente los elementos */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilos para los logotipos en el footer */
+.logos {
+    display: flex;
+    align-items: center; /* Centra verticalmente los logotipos */
+    margin-right: 20px; /* Ajusta el espaciado entre logotipos */
+}
+
+.logo1,
+.logo2 {
+    width: 100px; /* Ajusta el ancho según tus necesidades */
+    height: 100px; /* Ajusta el alto según tus necesidades */
+    background-size: cover;
+}
+
+.logo1 {
+    background-image: url(../img/logo22-25-1.png);
+    background-repeat: no-repeat;
+}
+
+.logo2 {
+    background-image: url(../img/logo22-25-2.png);
+    background-repeat: no-repeat;
+}
+
+/* Estilos para la navegación en el footer */
+footer .footer__nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+footer .footer__nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+footer .footer__nav ul li:last-child {
+    margin-right: 0;
+}
+
+footer .footer__nav ul li a {
+    color: #ffffff4d;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+footer .footer__nav ul li a:hover {
+    color: #fe4918;
+}

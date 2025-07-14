@@ -1,0 +1,99 @@
+/* ====================
+   ESTILO GENERAL
+==================== */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f7f9fb;
+    color: #333;
+    padding: 20px;
+    margin: 0;
+}
+
+h1, h2 {
+    color: #2b4f81;
+    border-bottom: 2px solid #d1e0ee;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
+/* ====================
+   BLOQUES DE MEJORAS
+==================== */
+.mejora-box {
+    background-color: #ffffff;
+    border: 1px solid #d3dce6;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.mejora-box strong {
+    color: #1c3b5d;
+}
+
+.mejora-box span.cronometro {
+    font-weight: bold;
+    color: #cf6c05;
+}
+
+/* ====================
+   FORMULARIO
+==================== */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #d3dce6;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #2b4f81;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccd6e0;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #fefefe;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    background-color: #2b4f81;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #1f3c68;
+}
+
+/* ====================
+   MENSAJES VACÍOS
+==================== */
+p {
+    padding: 10px;
+    background-color: #fff8dc;
+    border-left: 5px solid #ffd700;
+    margin-top: 10px;
+    border-radius: 5px;
+}

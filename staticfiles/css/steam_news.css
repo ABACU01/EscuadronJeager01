@@ -1,0 +1,32 @@
+/* static/css/steam_news.css */
+
+.steam-news-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.news-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.news-item a {
+    text-decoration: none;
+    color: #0066cc;
+    font-size: 1.1em;
+}
+
+.news-item a:hover {
+    text-decoration: underline;
+}
+
+.news-item small {
+    color: #666;
+}
+
+.news-item p {
+    margin: 5px 0 0;
+    font-size: 0.95em;
+    color: #333;
+}

@@ -1,0 +1,274 @@
+/* Estilos base para el cuerpo del documento */
+body {
+    font-family: Arial, sans-serif;
+    /* Fuente y familia de fuentes */
+    background-color: #ffffff;
+    /* Color de fondo */
+    color: #333;
+    /* Color del texto */
+}
+
+/* Estilos para los enlaces de registro e inicio de sesión */
+.header__enlace {
+    position: absolute;
+    /* Posición absoluta para posicionamiento preciso */
+    top: 0;
+    /* Posiciona el enlace en la parte superior */
+    right: 0;
+    /* Posiciona el enlace en el extremo derecho */
+    width: 100px;
+    /* Ancho fijo para ambos enlaces */
+    font-family: 'Oswald', sans-serif;
+    /* Fuente */
+    text-decoration: none;
+    /* Sin subrayado */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    margin-right: 10px;
+    /* Margen derecho */
+    border: 2px solid #fe4918;
+    /* Borde */
+    color: #fe4918;
+    /* Color del texto */
+    background-color: #ffffff;
+    /* Color de fondo */
+    transition: all 0.3s ease;
+    /* Transición suave */
+}
+
+/* Estilos para el encabezado */
+.header {
+    min-height:25em;
+    /* Altura mínima */
+    height: 30vh;
+    /* Altura relativa */
+    background-image: url(../img/sliderGL.png);
+    /* Imagen de fondo */
+    height: 50vh;
+    /* Altura relativa */
+    background-position: top center;
+    /* Posición de la imagen de fondo */
+    background-size: cover;
+    /* Tamaño de la imagen de fondo */
+    margin: 0;
+    /* Elimina los márgenes predeterminados */
+    margin-bottom: -1px;
+    /* Margen negativo para superponer el encabezado */
+}
+
+/* Estilos para el contenido del encabezado */
+.header__contenido {
+    position: relative;
+    /* Posición relativa para el contenido */
+    text-decoration: none;
+    /* Sin decoración de texto */
+}
+
+/* Estilos para el logo del encabezado */
+.header__logo {
+    position: absolute;
+    /* Posición absoluta */
+    text-decoration: none;
+    /* Sin decoración de texto */
+    color: #ffffff;
+    /* Color del texto */
+    font-size: 7rem;
+    /* Tamaño de la fuente */
+    font-weight: bold;
+    /* Grosor de la fuente */
+    top: 50%;
+    /* Posiciona el elemento en el centro verticalmente */
+    transform: translateY(300%);
+    /* Centra verticalmente el elemento */
+    left: 1rem;
+    /* Posiciona el elemento a la izquierda */
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 768px) {
+    .header {
+        min-height: 20em;
+        /* Altura mínima */
+        height: 30vh;
+        /* Altura relativa */
+        margin-bottom: 0;
+        /* Elimina el margen inferior */
+    }
+
+    .header__contenido {
+        top: 50%;
+        /* Posiciona el contenido en el centro verticalmente */
+        transform: translateY(-50%);
+        /* Centra verticalmente el contenido */
+        margin-right: 1rem;
+        /* Margen derecho */
+        margin-bottom: 0;
+        /* Elimina el margen inferior */
+    }
+
+    .header__logo {
+        font-size: 2rem;
+        /* Tamaño de la fuente */
+        margin-right: 15px;
+        /* Margen derecho */
+    }
+}
+/* Estilos para la barra de navegación */
+.barra {
+    position: sticky; /* Hace que la barra sea fija en la parte superior */
+    top: 0; /* Coloca la barra en la parte superior */
+    left: 0; /* Coloca la barra en el borde izquierdo */
+    width: 100%; /* Ancho completo de la ventana del navegador */
+    background-color: #353535; /* Color de fondo */
+    padding: 5px 0; /* Espaciado interno */
+    overflow: hidden; /* Control de desbordamiento */
+    z-index: 1000; /* Asegura que la barra esté sobre otros elementos */
+}
+
+/* Estilos para los enlaces dentro de la barra de navegación */
+.barra a {
+    font-family: 'Oswald', sans-serif; /* Fuente */
+    color: #ffffff; /* Color del texto */
+    font-size: 1rem; /* Tamaño de la fuente */
+    text-transform: uppercase; /* Transformación de texto a mayúsculas */
+    text-decoration: none; /* Sin decoración de texto */
+    transition: all .10s ease; /* Transición suave */
+    padding: 10px 20px; /* Espaciado interno */
+    margin-right: 10px; /* Margen derecho */
+    display: inline-block; /* Mostrar en línea */
+}
+
+.barra a:hover {
+    background-color: #fe4918; /* Color de fondo al pasar el mouse */
+}
+
+.barra a:last-child {
+    border: 2px solid #fe4918; /* Borde */
+    color: #fe4918; /* Color del texto */
+}
+
+.barra a:last-child:hover {
+    color: #ffffff; /* Color del texto al pasar el mouse */
+}
+
+@media only screen and (min-width:768px) {
+    .barra {
+        padding: 10px 0;
+        /* Espaciado interno */
+        margin-bottom: 0;
+        /* Elimina el margen inferior */
+    }
+
+    .barra a {
+        margin-right: 20px;
+        /* Margen derecho */
+        margin-bottom: 0;
+        /* Elimina el margen inferior */
+    }
+}
+
+/* Estilos para la barra de navegación principal */
+nav.navegacion-principal {
+    background-image: url(../img/banner.jpg);
+    /* Imagen de fondo */
+    background-repeat: no-repeat;
+    /* No repetir la imagen de fondo */
+    background-size: cover;
+    /* Ajustar el tamaño de la imagen de fondo */
+    display: flex;
+    /* Utilizar flexbox */
+    justify-content: space-between;
+    /* Justificar el contenido */
+    align-items: center;
+    /* Alinear los elementos verticalmente */
+    background-color: #484849;
+    /* Color de fondo */
+}
+
+/* Estilos para los enlaces dentro de la barra de navegación principal */
+nav.navegacion-principal a {
+    font-family: 'Oswald', sans-serif;
+    /* Fuente */
+    color: #ffffff;
+    /* Color del texto */
+    font-size: .8rem;
+    /* Tamaño de la fuente */
+    text-transform: uppercase;
+    /* Transformación de texto a mayúsculas */
+    text-decoration: none;
+    /* Sin decoración de texto */
+    transition: all .10s ease;
+    /* Transición suave */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    display: flex;
+    /* Utilizar flexbox */
+    justify-content: center;
+    /* Justificar el contenido horizontalmente */
+    align-items: center;
+    /* Alinear los elementos verticalmente */
+    width: 200px;
+    /* Ancho fijo */
+    height: 20px;
+    /* Altura fija */
+    text-align: center;
+    /* Alinear el texto horizontalmente */
+}
+
+/* Estilos para los enlaces al pasar el mouse */
+nav.navegacion-principal a:hover {
+    background-color: #fe4918;
+    /* Color de fondo al pasar el mouse */
+}
+
+/* Estilos para el último enlace de la barra de navegación principal */
+nav.navegacion-principal a:last-child {
+    border: 2px solid #fe4918;
+    /* Borde */
+    color: #fe4918;
+    /* Color del texto */
+}
+
+nav.navegacion-principal a:last-child:hover {
+    color: #1a2297;
+    /* Color del texto al pasar el mouse */
+}
+
+/* Media query para dispositivos móviles */
+@media only screen and (max-width: 768px) {
+    nav.navegacion-principal {
+        flex-direction: column;
+        /* Cambiar la dirección de los elementos a columna */
+        align-items: flex-start;
+        /* Alinear los elementos a la izquierda */
+    }
+
+    nav.navegacion-principal a {
+        margin-bottom: 10px;
+        /* Espacio entre los elementos */
+    }
+}
+
+/* Restablecer márgenes y rellenos para el header */
+.header {
+    margin: 0;
+    padding: 0;
+}
+
+/* Asegurar que no haya ningún margen alrededor de la imagen de fondo */
+.header {
+    background-position: top center;
+    background-size: cover;
+}
+
+/* Restablecer márgenes y rellenos para el body */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Si es necesario, también puedes aplicar márgenes y rellenos al contenedor de la barra */
+.barra {
+    margin: 0;
+    padding: 0;
+}
