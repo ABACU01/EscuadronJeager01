@@ -56,7 +56,6 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    ...
 ]
 
 ROOT_URLCONF = 'EscuadronJeager01.urls'
