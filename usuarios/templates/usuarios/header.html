@@ -1,0 +1,28 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>perfil</title>
+    <link rel="stylesheet" href="{% static 'css/Header.css' %}">
+    
+  </head>
+  <header class="header">
+    <div class="header__contened">
+      <nav class="header__Navegacion">
+        <a href="{% url 'cerrar_sesion' %}" class="header__enlace">Cerrar sesión</a>
+
+      </nav>
+    </div>
+  </header>
+  <div class="barra">
+    <nav class="navegacion-principal">
+      <a href="{% url 'guerras_usuario' %}">Guerras</a>
+      <a href="{% url 'steam_news' %}">Eventos</a>
+      <a href="{% url 'vista_mejoras' %}">mejoras</a>
+      <a href="">proximamente</a>
+      <a href="{% url 'perfil' %}">Perfil</a>
+    </nav>
+  </div>
+  <!--.barra -->
+<!-- Contenido de la página -->

@@ -1,0 +1,191 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/mejoras.css' %}">
+<header>
+{% include 'usuarios/header.html' %}
+
+    </header>
+
+<h1>🔧 Gestión de Mejoras</h1>
+
+<h2>🧍 Tus mejoras</h2>
+{% if mis_mejoras %}
+    {% for mejora in mis_mejoras %}
+        <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+            <strong>{{ mejora.obj.get_edificio_display }}</strong> ({{ mejora.obj.get_categoria_display }})<br>
+            Nivel {{ mejora.obj.nivel_inicial }} → {{ mejora.obj.nivel_objetivo }}<br>
+            Inició: {{ mejora.obj.fecha_inicio }}<br>
+            Ubicación: 
+            {% if mejora.obj.planeta_principal %}
+                Planeta Principal
+            {% else %}
+                Colonia #{{ mejora.obj.numero_colonia }}
+            {% endif %}<br>
+            {% if mejora.segundos_restantes > 0 %}
+                ⏳ <span class="cronometro" data-segundos="{{ mejora.segundos_restantes }}"></span>
+            {% else %}
+                ✅ Completada
+            {% endif %}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No tienes mejoras registradas.</p>
+{% endif %}
+
+<h2>🧑‍🤝‍🧑 Mejoras de otros usuarios</h2>
+{% if mejoras_otros %}
+    {% for mejora in mejoras_otros %}
+        <div style="border:1px solid #eee; padding:10px; margin-bottom:10px;">
+            👤 <strong>{{ mejora.obj.usuario.username }}</strong>: {{ mejora.obj.get_edificio_display }}<br>
+            Nivel {{ mejora.obj.nivel_inicial }} → {{ mejora.obj.nivel_objetivo }}<br>
+            ⏳ <span class="cronometro" data-segundos="{{ mejora.segundos_restantes }}"></span>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No hay mejoras de otros usuarios registradas.</p>
+{% endif %}
+
+<h2>📝 Registrar nueva mejora</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+    <label for="id_categoria">Categoría:</label>
+    {{ form.categoria }}
+</div>
+<div class="form-group">
+<label for="id_edificio">Edificio:</label>
+<select name="edificio" id="id_edificio">
+    {% for opcion in form.edificio_opciones %}
+        <option value="{{ opcion.value }}" data-categoria="{{ opcion.categoria }}">
+            {{ opcion.label }}
+        </option>
+    {% endfor %}
+</select>
+</div>
+<div class="form-group">
+    <label for="id_nivel_inicial">Nivel Inicial:</label>
+    {{ form.nivel_inicial }}
+</div>
+<div class="form-group">
+    <label for="id_nivel_objetivo">Nivel Objetivo:</label>
+    {{ form.nivel_objetivo }}
+</div>
+<div class="form-group">
+    <label for="id_fecha_inicio">Fecha de Inicio:</label>
+    {{ form.fecha_inicio }}
+</div>
+<div class="form-group">
+    <label for="id_duracion_horas">Duración (horas):</label>
+    {{ form.duracion_horas }}
+</div>
+<div class="form-group">
+    <label for="id_planeta_principal">¿Es planeta principal?</label>
+    {{ form.planeta_principal }}
+</div>
+<div class="form-group" id="campo_colonia" style="display: none;">
+    <label for="id_numero_colonia">Número de colonia:</label>
+    {{ form.numero_colonia }}
+</div>
+
+    <button type="submit">Registrar</button>
+</form>
+
+<script>
+/* === CRONÓMETRO DINÁMICO === */
+document.querySelectorAll('.cronometro').forEach(function(el) {
+    let segundos = parseInt(el.dataset.segundos);
+    function actualizar() {
+        if (segundos <= 0) {
+            el.innerHTML = "✅ Completada";
+            return;
+        }
+        let h = Math.floor(segundos / 3600);
+        let m = Math.floor((segundos % 3600) / 60);
+        let s = segundos % 60;
+        el.innerHTML = `${h}h ${m}min ${s}s`;
+        segundos--;
+        setTimeout(actualizar, 1000);
+    }
+    actualizar();
+});
+</script>
+
+<script>
+/* === MOSTRAR / OCULTAR CAMPO DE COLONIA === */
+const checkboxPrincipal = document.getElementById("id_planeta_principal");
+const campoColonia = document.getElementById("campo_colonia");
+
+function toggleCampoColonia() {
+    if (checkboxPrincipal.checked) {
+        campoColonia.style.display = "none";
+    } else {
+        campoColonia.style.display = "block";
+    }
+}
+
+// Ejecutar al cargar
+toggleCampoColonia();
+
+// Escuchar cambios
+checkboxPrincipal.addEventListener("change", toggleCampoColonia);
+
+/* === FILTRAR EDIFICIOS POR CATEGORÍA === */
+const categoriaSelect = document.getElementById("id_categoria");
+const edificioSelect = document.getElementById("id_edificio");
+
+// Guardamos las opciones originales al cargar
+const opcionesOriginales = Array.from(edificioSelect.options).map(opt => ({
+    value: opt.value,
+    text: opt.text,
+    dataset: opt.dataset
+}));
+
+categoriaSelect.addEventListener("change", function () {
+    const categoria = this.value;
+
+    // Volver a cargar las opciones originales
+    edificioSelect.innerHTML = "";
+    opcionesOriginales.forEach(optData => {
+        const option = document.createElement("option");
+        option.value = optData.value;
+        option.text = optData.text;
+
+        // Aquí podrías aplicar un filtro más preciso si los edificios están organizados
+        // por categorías en los value/nombres
+        if (categoria === "" || optData.value.startsWith(categoria)) {
+            edificioSelect.appendChild(option);
+        }
+    });
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const categoriaSelect = document.getElementById('id_categoria');
+    const edificioSelect = document.getElementById('id_edificio');
+
+    const opcionesOriginales = Array.from(edificioSelect.options).map(opt => ({
+        value: opt.value,
+        text: opt.text,
+        categoria: opt.getAttribute('data-categoria')
+    }));
+
+    function filtrarEdificios() {
+        const categoria = categoriaSelect.value;
+        edificioSelect.innerHTML = '';
+        opcionesOriginales.forEach(opt => {
+            if (opt.categoria === categoria) {
+                const nueva = document.createElement('option');
+                nueva.value = opt.value;
+                nueva.textContent = opt.text;
+                nueva.setAttribute('data-categoria', opt.categoria);
+                edificioSelect.appendChild(nueva);
+            }
+        });
+    }
+
+    filtrarEdificios();
+    categoriaSelect.addEventListener('change', filtrarEdificios);
+});
+</script>
+<footer>
+    {% include 'usuarios/footer.html' %}
+    </footer>

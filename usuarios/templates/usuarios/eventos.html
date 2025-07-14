@@ -1,0 +1,27 @@
+{% load static %}
+
+<header>
+{% include 'usuarios/header.html' %}
+
+    </header>
+<h2>Noticias recientes de Steam</h2>
+<ul>
+  {% for noticia in noticias %}
+    <li style="margin-bottom: 20px;">
+      <a href="{{ noticia.url }}" target="_blank" style="font-weight: bold; font-size: 1.2em;">{{ noticia.title }}</a><br>
+      <small>Publicado: {{ noticia.fecha_formateada|date:"d M Y H:i" }}</small><br>
+      
+      {% if noticia.thumbnail %}
+        <img src="{{ noticia.thumbnail }}" alt="Imagen de la noticia" style="max-width: 300px; margin-top: 10px;"/><br>
+      {% endif %}
+      
+      <div style="margin-top: 10px;">{{ noticia.contents|safe }}</div>
+    </li>
+  {% empty %}
+    <li>No hay noticias disponibles.</li>
+  {% endfor %}
+</ul>
+
+<footer>
+    {% include 'usuarios/footer.html' %}
+    </footer>

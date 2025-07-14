@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuenta pendiente</title>
+    <link rel="stylesheet" href="{% static 'css/pendiente.css' %}">
+</head>
+<body>
+    <div class="mensaje-pendiente">
+        <h2>¡Gracias por registrarte!</h2>
+        <p>Tu cuenta está pendiente de aprobación por parte del administrador del Escuadrón Jeager.</p>
+        <p>Recibirás acceso cuando sea activada.</p>
+    </div>
+
+            <!-- Botón para regresar al inicio o login -->
+        <a href="{% url 'inicio' %}" class="btn-inicio">Volver al inicio</a>
+</body>
+</html>

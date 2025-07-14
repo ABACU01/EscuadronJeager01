@@ -1,0 +1,23 @@
+{% load static %}
+
+<header>
+{% include 'usuarios/header.html' %}
+
+    </header>
+<body>
+
+{% block content %}
+  <h1>👤 Perfil del Usuario</h1>
+
+  <p><strong>Nombre de usuario:</strong> {{ usuario.username }}</p>
+  <p><strong>Correo electrónico:</strong> {{ usuario.email }}</p>
+  <p><strong>Fecha de registro:</strong> {{ usuario.date_joined|date:"d M Y H:i" }}</p>
+
+{% endblock %}
+
+    </body>
+
+    
+<footer>
+    {% include 'usuarios/footer.html' %}
+    </footer>

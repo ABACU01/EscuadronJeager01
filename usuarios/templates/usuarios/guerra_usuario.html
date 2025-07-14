@@ -1,0 +1,107 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/guerra.css' %}">
+
+<header>
+  {% include 'usuarios/header.html' %}
+</header>
+
+<h1>⚔️ Guerras Activas</h1>
+
+
+<div class="add-enemy-container">
+  <h2>➕ Agregar enemigo</h2>
+  <form method="post" class="add-enemy-form">
+    {% csrf_token %}
+    <div class="form-group">
+      {{ form.guerra.label_tag }}
+      {{ form.guerra }}
+    </div>
+    <div class="form-group">
+      {{ form.nombre.label_tag }}
+      {{ form.nombre }}
+    </div>
+    <div class="form-group">
+      {{ form.coordenadas.label_tag }}
+      {{ form.coordenadas }}
+    </div>
+    <div class="form-group">
+      {{ form.observaciones.label_tag }}
+      {{ form.observaciones }}
+    </div>
+    <div class="form-group">
+      {{ form.ultima_vez_atacado.label_tag }}
+      {{ form.ultima_vez_atacado }}
+    </div>
+    <button type="submit" class="submit-btn">➕ Registrar Enemigo</button>
+  </form>
+</div>
+
+
+{% for item in guerras_y_enemigos %}
+  <div class="card">
+    <h2>{{ item.guerra.nombre }} vs {{ item.guerra.alianza_enemiga }}</h2>
+    <p><strong>Inicio:</strong> {{ item.guerra.fecha_inicio }}</p>
+
+    <h3>👾 Enemigos</h3>
+    {% if item.enemigos %}
+      <div class="enemigos-grid">
+        {% for enemigo_data in item.enemigos %}
+          {% with enemigo=enemigo_data.obj segundos=enemigo_data.segundos_restantes %}
+            <div class="enemy {% if enemigo.ha_regenerado %}regenerado{% else %}tiempo{% endif %}">
+              <strong>{{ enemigo.nombre }}</strong>
+              <p>📍 {{ enemigo.coordenadas }}</p>
+
+              {% if enemigo.ha_regenerado %}
+                <p class="status regenerado">✅ Regenerado</p>
+              {% else %}
+                <p class="status tiempo">🕒 En recuperación</p>
+                <p class="timer" id="timer-{{ forloop.parentloop.counter0 }}-{{ forloop.counter0 }}"></p>
+                <script>
+                  (function(){
+                    let tiempoRestante = {{ segundos }};
+                    const timerSpan = document.getElementById('timer-{{ forloop.parentloop.counter0 }}-{{ forloop.counter0 }}');
+
+                    function actualizarTimer() {
+                      const horas = Math.floor(tiempoRestante / 3600);
+                      const minutos = Math.floor((tiempoRestante % 3600) / 60);
+                      const segundos = tiempoRestante % 60;
+
+                      timerSpan.innerText = `⏳ Faltan ${horas}h ${minutos}m ${segundos}s`;
+
+                      if (tiempoRestante > 0) {
+                        tiempoRestante--;
+                        setTimeout(actualizarTimer, 1000);
+                      } else {
+                        timerSpan.innerText = "✅ Ya debería haber regenerado";
+                      }
+                    }
+
+                    actualizarTimer();
+                  })();
+                </script>
+              {% endif %}
+
+              {% if enemigo.observaciones %}
+                <p><em>📌 {{ enemigo.observaciones }}</em></p>
+              {% endif %}
+
+              <form method="post" action="{% url 'reiniciar_enemigo' enemigo.id %}">
+                {% csrf_token %}
+                <button type="submit" class="reiniciar-btn">🔁 Reiniciar</button>
+              </form>
+            </div>
+          {% endwith %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>Sin enemigos registrados en esta guerra.</p>
+    {% endif %}
+  </div>
+{% empty %}
+  <p>No hay guerras activas por el momento.</p>
+{% endfor %}
+
+<footer>
+  {% include 'usuarios/footer.html' %}
+</footer>

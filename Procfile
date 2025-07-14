@@ -1,0 +1,1 @@
+web: gunicorn EscuadronJeager01.wsgi
