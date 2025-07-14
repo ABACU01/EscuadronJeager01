@@ -20,16 +20,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d+&7c*5+m7x3u3pvup85xs6=k3fer4bmygr^ye388n5f!pwi@h'
+import os
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'clave-insegura-dev')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'escuadron-jeager.onrender.com'
+]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://3f4b-189-148-231-195.ngrok-free.app",
-    "https://b091-189-148-187-35.ngrok-free.app",
+"https://escuadron-jeager.onrender.com"
 ]
 
 # Application definition
