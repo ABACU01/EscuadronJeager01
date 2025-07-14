@@ -2,7 +2,11 @@ services:
   - type: web
     name: escuadron-jeager
     env: python
-    buildCommand: |
-      pip install -r requirements.txt
-      python manage.py migrate
-    startCommand: gunicorn EscuadronJeager01.wsgi
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn EscuadronJeager01.wsgi"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: EscuadronJeager01.settings
+    plan: free
+    autoDeploy: true
+    preDeployCommand: "python manage.py migrate"
