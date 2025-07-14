@@ -81,12 +81,16 @@ WSGI_APPLICATION = 'EscuadronJeager01.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='postgres://escuadron_db_user:P5i1S7mEBvvtzyik5JD0q2iFhIzX4WJC@dpg-d1qjmrc9c44c739meil0-a:5432/escuadron_db',
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
+
 
 
 # Password validation
