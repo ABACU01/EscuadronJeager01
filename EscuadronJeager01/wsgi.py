@@ -27,22 +27,27 @@ except Exception as e:
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-admin_username = 'ADMINJAAL'
-admin_email = 'joseabacu0001@gmail.com'
-admin_password = 'L1JAAL08'  # Puedes cambiar esto por una contraseña segura
+admin_username = 'admin'
+admin_email = 'admin@correo.com'
+admin_password = 'admin1234'
 
 try:
-    if not User.objects.filter(username=admin_username).exists():
+    user = User.objects.filter(username=admin_username).first()
+    if user:
+        if not user.is_superuser:
+            user.is_superuser = True
+            user.is_staff = True
+            user.set_password(admin_password)
+            user.save()
+            print("🔄 Usuario existente actualizado a superusuario.")
+        else:
+            print("✅ El superusuario ya existe.")
+    else:
         User.objects.create_superuser(
             username=admin_username,
             email=admin_email,
             password=admin_password
         )
         print("✅ Superusuario creado correctamente.")
-    else:
-        print("⚠️ El superusuario ya existe. No se creó uno nuevo.")
 except Exception as e:
-    print(f"❌ Error al crear el superusuario: {e}")
-
-# Activar la aplicación
-application = get_wsgi_application()
+    print(f"❌ Error al verificar/crear superusuario: {e}")
