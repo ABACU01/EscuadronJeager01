@@ -27,9 +27,9 @@ except Exception as e:
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-admin_username = 'admin'
-admin_email = 'admin@correo.com'
-admin_password = 'admin1234'  # Puedes cambiar esto por una contraseña segura
+admin_username = 'JAAL'
+admin_email = 'joseabacu01@gmail.com'
+admin_password = 'L1JAAL08'  # Puedes cambiar esto por una contraseña segura
 
 try:
     if not User.objects.filter(username=admin_username).exists():
