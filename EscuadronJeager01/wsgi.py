@@ -51,3 +51,6 @@ try:
         print("✅ Superusuario creado correctamente.")
 except Exception as e:
     print(f"❌ Error al verificar/crear superusuario: {e}")
+    
+# Activar la aplicación
+application = get_wsgi_application()
