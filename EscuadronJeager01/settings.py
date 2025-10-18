@@ -87,7 +87,7 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://escuadron_db_e8eg_user:8QswFuo7kmh1IYYa5S62WHwG9zQrywsS@dpg-d35g9veuk2gs73bh1ufg-a:5432/escuadron_db_e8eg',
+        default='psql 'postgresql://neondb_owner:npg_7iTB3QFuERIC@ep-noisy-cell-adcavnck-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'',
         conn_max_age=600,
         ssl_require=True
     )
