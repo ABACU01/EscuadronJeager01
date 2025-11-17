@@ -87,7 +87,7 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://escuadron_db_bcod_user:2W7lWbeFqvYoEH1L3KkPHIhEbwDbTt5J@dpg-d4d2dd2dbo4c73dj4ep0-a.oregon-postgres.render.com/escuadron_db_bcod',
+        default='postgresql://escuadron_user:iBYSWXbuQMrttMxF5rEcuyN7TEqIqmvt@dpg-d4dmsour433s738l23kg-a.oregon-postgres.render.com/escuadrond',
         conn_max_age=600,
         ssl_require=True
     )
